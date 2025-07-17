@@ -1,8 +1,13 @@
 import NodeCard from "./node-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Settings from "./settings";
+import { useFlowBuilder } from "../hooks/useFlowBuilder";
 
-const Sidebar = () => {
+interface SidebarProps {
+  flowBuilderHook: ReturnType<typeof useFlowBuilder>;
+}
+
+const Sidebar = ({ flowBuilderHook }: SidebarProps) => {
   return (
     <div className="w-64 bg-gray-50 h-full p-4">
       <Tabs defaultValue="nodes" className="w-full">
@@ -14,7 +19,7 @@ const Sidebar = () => {
           <NodeCard />
         </TabsContent>
         <TabsContent value="settings">
-          <Settings />
+          <Settings flowBuilderHook={flowBuilderHook} />
         </TabsContent>
       </Tabs>
     </div>
